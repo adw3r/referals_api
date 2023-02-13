@@ -10,14 +10,14 @@ CONFIG = ConfigParser()
 CONFIG.read(pathlib.Path(PACKAGE_FOLDER, 'config.ini'))
 GENERAL_CONFIG = CONFIG['general']
 
-DEBUG = os.environ.get('DEBUG', False)
+DEBUG = os.environ.get('DEBUG', 'False')
 GENERAL_CONFIG['DEBUG'] = DEBUG
 DEBUG = GENERAL_CONFIG.getboolean('DEBUG')
 
 
 if not DEBUG:
-    HOST = os.environ.get('HOST', '0.0.0.0')
-    PORT = os.environ.get('PORT', 8183)
+    HOST = GENERAL_CONFIG.get('HOST', '0.0.0.0')
+    PORT = GENERAL_CONFIG.getint('PORT', 8185)
 else:
-    HOST = os.environ.get('TEST_HOST', 'localhost')
-    PORT = os.environ.get('TEST_PORT', 8283)
+    HOST = GENERAL_CONFIG.get('TEST_HOST', 'localhost')
+    PORT = GENERAL_CONFIG.getint('TEST_PORT', 8285)
