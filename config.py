@@ -10,9 +10,9 @@ CONFIG = ConfigParser()
 CONFIG.read(pathlib.Path(PACKAGE_FOLDER, 'config.ini'))
 GENERAL_CONFIG = CONFIG['general']
 
-DEBUG = os.environ.get('DEBUG', 'False')
+DEBUG = os.environ.get('DEBUG')
 GENERAL_CONFIG['DEBUG'] = DEBUG
-DEBUG = GENERAL_CONFIG.getboolean('DEBUG')
+DEBUG = GENERAL_CONFIG.getboolean('DEBUG', False)
 
 
 if not DEBUG:
