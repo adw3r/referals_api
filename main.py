@@ -7,6 +7,7 @@ from config import HOST, PORT, DEBUG
 from referals import get_referrals_from_json
 
 app = FastAPI()
+referrals = get_referrals_from_json()
 
 
 @app.get('/')
@@ -16,8 +17,7 @@ async def get_root():
 
 @app.get('/referals')
 async def get_referrals():
-    content = get_referrals_from_json()
-    return JSONResponse(content=content)
+    return JSONResponse(content=referrals)
 
 
 if __name__ == '__main__':
